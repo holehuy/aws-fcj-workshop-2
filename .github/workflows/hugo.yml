@@ -32,7 +32,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       HUGO_VERSION: 0.128.0
-      WORKSHOP_PATH: aws-fcj-workshop-1
+      WORKSHOP_PATH: ${{ github.event.repository.name }}
     steps:
       - name: Install Hugo CLI
         run: |
@@ -54,7 +54,7 @@ jobs:
           find content -type f \( -name "_index.vi.md" -o -name "_index.md" \) -exec sed -i "s/](\/images\//](\/${WORKSHOP_PATH}\/images\//g" {} +
       - name: Change home path
         run: |
-          find content -type f \( -name "_index.vi.md" -o -name "_index.md" \) -exec sed -i "s/fcj-workshop-home/$WORKSHOP_PATH/g" {} +
+          find content -type f \( -name "_index.vi.md" -o -name "_index.md" \) -exec sed -i "s\/fcj-workshop-home/\/${WORKSHOP_PATH}/g" {} +
       - name: Build with Hugo
         env:
           HUGO_CACHEDIR: ${{ runner.temp }}/hugo_cache
