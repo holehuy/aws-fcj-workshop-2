@@ -1,18 +1,21 @@
 ---
-title : "Prerequiste"
-date :  "`r Sys.Date()`" 
-weight : 2 
+title : "Preparation "
+date : "`r Sys.Date()`"
+weight : 2
 chapter : false
 pre : " <b> 2. </b> "
 ---
 
-## Overview
+{{% notice info %}}
+You need to create 1 Linux instance on the public subnet and 1 Window instance on the private subnet to perform this lab.
+{{% /notice %}}
 
-To prepare for the lab, several prerequisites need to be set up:
-- AWS CLI for logging into AWS ECR on the terminal.
-- Terraform: this is optional and can be considered an extension.
-- Creating IAM Roles for CodeBuild and CodePipeline.
+To learn how to create EC2 instances and VPCs with public/private subnets, you can refer to the lab:
+  - [About Amazon EC2](https://000004.awsstudygroup.com/en/)
+  - [Works with Amazon VPC](https://000003.awsstudygroup.com/en/)
 
-## Content
+In order to use System Manager to manage our window instances in particular and our instances in general on AWS, we need to give permission to our instances to be able to work with System Manager. In this preparation, we will also proceed to create an IAM Role to grant permissions to instances that can work with System Manager.
 
-{{% children  %}}
+### Content
+  - [Prepare VPC and EC2](2.1-createec2/)
+  - [Create IAM Role](2.2-createiamrole/)
