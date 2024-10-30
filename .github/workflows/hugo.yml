@@ -54,7 +54,7 @@ jobs:
           find content -type f \( -name "_index.vi.md" -o -name "_index.md" \) -exec sed -i "s/](\/images\//](\/aws-fcj-workshop-2\/images\//g" {} +
       - name: Change home path
         run: |
-          find layouts -type f \( -name "logo.html" -o -name "logo.html" \) -exec sed -i "s/](\/fcj-workshop-home\//](\/${WORKSHOP_PATH}\//g" {} +  
+          find layouts -type f \( -name "logo.html" -o -name "logo.html" \) -exec sed -i "s/](\/fcj-workshop-home\//](\/$WORKSHOP_PATH\//g" {} +  
       - name: Build with Hugo
         env:
           HUGO_CACHEDIR: ${{ runner.temp }}/hugo_cache
