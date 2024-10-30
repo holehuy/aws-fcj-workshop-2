@@ -51,7 +51,7 @@ jobs:
         run: "[[ -f package-lock.json || -f npm-shrinkwrap.json ]] && npm ci || true"
       - name: Change image links
         run: |
-          find content -type f \( -name "_index.vi.md" -o -name "_index.md" \) -exec sed -i "s/](\/images\//](\/aws-fcj-workshop-2\/images\//g" {} +
+          find content -type f \( -name "_index.vi.md" -o -name "_index.md" \) -exec sed -i "s/](\/images\//](\/${WORKSHOP_PATH}\/images\//g" {} +
       - name: Change home path
         run: |
           find content -type f \( -name "_index.vi.md" -o -name "_index.md" \) -exec sed -i "s/fcj-workshop-home/$WORKSHOP_PATH/g" {} +
