@@ -6,16 +6,21 @@ chapter : false
 pre : " <b> 2. </b> "
 ---
 
-{{% notice info %}}
-You need to create 1 Linux instance on the public subnet and 1 Window instance on the private subnet to perform this lab.
+{{% notice note %}}
+To perform this lab, you first need to create 1 SES Domain Identity (verified) and 4 S3 buckets. Refer to the documentation and take the next steps to fully prepare the necessary resources.
 {{% /notice %}}
 
-To learn how to create EC2 instances and VPCs with public/private subnets, you can refer to the lab:
-  - [About Amazon EC2](https://000004.awsstudygroup.com/en/)
-  - [Works with Amazon VPC](https://000003.awsstudygroup.com/en/)
+You may need to refer and become familiar with some of the following services:
 
-In order to use System Manager to manage our window instances in particular and our instances in general on AWS, we need to give permission to our instances to be able to work with System Manager. In this preparation, we will also proceed to create an IAM Role to grant permissions to instances that can work with System Manager.
+- [Amazon SES Identity](https://docs.aws.amazon.com/ses/latest/dg/creating-identities.html)
+- [AWS Security Hub](https://aws.amazon.com/security-hub/)
+- [AWS Serverless Application Model (SAM)](https://aws.amazon.com/serverless/sam/)
+- [Amazon S3](https://aws.amazon.com/s3/)
+- [AWS Identity and Access Management (IAM)](https://aws.amazon.com/iam/)
+- [AWS Lambda](https://aws.amazon.com/lambda/)
+- [Amazon Simple Queue Service (SQS)](https://aws.amazon.com/sqs/)
+- [Amazon Simple Notification Service (SNS)](https://aws.amazon.com/sns/)
+- [AWS Cloud​Formation](https://aws.amazon.com/cloudformation/)
 
 ### Content
-  - [Prepare VPC and EC2](2.1-createec2/)
-  - [Create IAM Role](2.2-createiamrole/)
+{{% children  %}}

@@ -1,5 +1,5 @@
 ---
-title : "Nhận Email với Amazon SES & Quét Malware trên S3 bằng Trend Micro Cloud One"
+title : "Nhận Email với Amazon SES & Quét Malware trên S3"
 date :  "`r Sys.Date()`" 
 weight : 1 
 chapter : false
@@ -10,7 +10,7 @@ chapter : false
 
 Trong bài lab này, chúng ta sẽ khám phá cách thức nhận email sử dụng **[Amazon Simple Email Service](https://aws.amazon.com/vi/ses/)** và lưu trữ chúng trên **[Amazon S3](https://aws.amazon.com/vi/s3/)**. Bên cạnh đó, chúng ta sẽ thiết lập quy trình quét malware cho các tệp đính kèm email bằng giải pháp **[Trend Micro Cloud One](http://www.trendmicro.com/aws)**.
 
-![ConnectPrivate](/images/diagram.png) 
+![Diagram](/images/diagram.png) 
 
 ### Mục tiêu
 

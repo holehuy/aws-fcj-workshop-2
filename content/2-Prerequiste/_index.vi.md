@@ -1,23 +1,28 @@
 ---
 title : "Các bước chuẩn bị"
 date :  "`r Sys.Date()`" 
-weight : 2 
+weight : 2
 chapter : false
 pre : " <b> 2. </b> "
 ---
 
-{{% notice info %}}
-Bạn cần tạo sẵn 1 Linux instance thuộc public subnet và 1 Window instance thuộc private subnet để thực hiện bài thực hành này.
+{{% notice note %}}
+Để thực hiện được bài thực hành này, trước tiên bạn cần tạo sẵn 1 SES Domain Identity (verified) và 4 S3 bucket. Tham khảo và thực hành theo các bước tiếp theo để chuẩn bị đầy đủ các tài nguyên cần thiết.
 {{% /notice %}}
 
-Để tìm hiểu cách tạo các EC2 instance và VPC với public/private subnet các bạn có thể tham khảo bài lab :
-  - [Giới thiệu về Amazon EC2](https://000004.awsstudygroup.com/vi/)
-  - [Làm việc với Amazon VPC](https://000003.awsstudygroup.com/vi/)
+Bạn có thể cần tham khảo và làm quen với một số dịch vụ sau đây:
 
-Để sử dụng System Manager để quản lý window instance nói riêng và các instance nói chung của chúng ta trên AWS, ta cần phải cung cấp quyền cho các instance của chúng ta có thể làm việc với System Manager.Trong phần chuẩn bị này, chúng ta cũng sẽ tiến hành tạo IAM Role để cấp quyền cho các instance có thể làm việc với System Manager.
+- [Amazon SES Identity](https://docs.aws.amazon.com/ses/latest/dg/creating-identities.html)
+- [AWS Security Hub](https://aws.amazon.com/security-hub/)
+- [AWS Serverless Application Model (SAM)](https://aws.amazon.com/serverless/sam/)
+- [Amazon S3](https://aws.amazon.com/s3/)
+- [AWS Identity and Access Management (IAM)](https://aws.amazon.com/iam/)
+- [AWS Lambda](https://aws.amazon.com/lambda/)
+- [Amazon Simple Queue Service (SQS)](https://aws.amazon.com/sqs/)
+- [Amazon Simple Notification Service (SNS)](https://aws.amazon.com/sns/)
+- [AWS Cloud​Formation](https://aws.amazon.com/cloudformation/)
 
 ### Nội dung
-  - [Chuẩn bị VPC và EC2 Instance](2.1-createec2/)
-  - [Tạo IAM Role](2.2-createiamrole/)
+{{% children  %}}
 
   

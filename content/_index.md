@@ -1,5 +1,5 @@
 ---
-title : "Email Receiving with Amazon SES & S3 Malware Scanning via Trend Micro Cloud One"
+title : "Email Receiving with Amazon SES & S3 Malware Scanning"
 date :  "`r Sys.Date()`" 
 weight : 1 
 chapter : false
