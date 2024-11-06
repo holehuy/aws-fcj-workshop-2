@@ -8,7 +8,7 @@ pre : " <b> 2.1 </b> "
 
 ### Tổng quan
 
-Để SES có thể nhận email, bận cần có 1 domain và cần tạo một SES domain identity, sau đó verity nó.
+Để SES có thể nhận email, bạn cần có 1 domain và cần tạo một SES domain identity, sau đó verity nó.
 
 ### Nội dung
 
