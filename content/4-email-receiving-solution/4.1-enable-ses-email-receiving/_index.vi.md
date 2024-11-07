@@ -34,7 +34,7 @@ Một S3 bucket để lưu trữ raw email sẽ được tạo ra
 
 ![Raw bucket](/images/4.email-receiving-solution/008-output.png)
 
-1. Enable Email receiving rule set
+5. Enable Email receiving rule set
 - Truy cập vào màn hình SES console
 - Vào tab **Email receiving** trong phần **Configuration**
 - Check chọn rule set và **Set as active**

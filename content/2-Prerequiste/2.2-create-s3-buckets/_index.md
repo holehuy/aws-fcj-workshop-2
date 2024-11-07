@@ -10,7 +10,7 @@ pre : " <b> 2.2 </b> "
 
 Based on the architecture diagram of the lab, we need to have 4 S3 Buckets:
 
-- Raw Email Bucket
+- Raw Email Bucket (will be created by CloudFormation)
 - Staging Bucket
 - Production Bucket
 - Quarantine Bucket
@@ -34,7 +34,7 @@ Based on the architecture diagram of the lab, we need to have 4 S3 Buckets:
 4. Verify that all buckets are created
 
 {{% notice info %}}
-Proceed with the above steps to create all 4 S3 buckets for the lab.
+Proceed with the above steps to create all 3 S3 buckets for the lab.
 {{% /notice %}}
 
-![S3 buckets](/images/2.prerequisite/011-s3-buckets.png)
+![S3 buckets](/images/2.prerequisite/014-create-bucket.png)

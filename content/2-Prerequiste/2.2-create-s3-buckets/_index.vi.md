@@ -28,6 +28,8 @@ Dựa theo sơ đồ kiến trúc của bài lab, chúng ta cần có 4 S3 Bucke
 
 3. Nhập tên bucket (lưu ý, tên bucket phải là duy nhất)
 
+![Click Create Bucket](/images/2.prerequisite/006-create-bucket-name.png)
+
 4. Cần chắc chắn rằng tất cả các Bucket đã được tạo
 
 {{% notice info %}}
