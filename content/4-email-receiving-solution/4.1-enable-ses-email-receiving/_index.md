@@ -1,9 +1,9 @@
 ---
-title : "Validation"
-date : "`r Sys.Date()`"
-weight : 5
+title : "Enable SES email receiving"
+date :  "`r Sys.Date()`" 
+weight : 1
 chapter : false
-pre : " <b> 5. </b> "
+pre : " <b> 4.1 </b> "
 ---
 
 ### Overal

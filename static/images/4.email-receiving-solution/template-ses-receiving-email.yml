@@ -1,0 +1,158 @@
+AWSTemplateFormatVersion: 2010-09-09
+
+Description: SES Receiving email solution stack
+
+Parameters:
+  AttachmentBucketARN:
+    Type: String
+    Description: The S3 bucket to store email attachment. Specify an existing S3 bucket.
+  EmailRecipient:
+    Type: String
+    Description: Email address for receiving attachments
+
+Resources:
+  EmailProcessingFunction:
+    Type: AWS::Lambda::Function
+    Properties:
+      FunctionName: "EmailProcessingFunction"
+      Handler: "index.lambda_handler"
+      Role: !GetAtt LambdaExecutionRole.Arn
+      Code:
+        ZipFile: |
+          import json
+          import boto3
+          import email
+          from email import policy
+          from email.parser import BytesParser
+          import os
+
+          s3_client = boto3.client('s3')
+
+          def lambda_handler(event, context):
+              bucket_name = event['Records'][0]['s3']['bucket']['name']
+              object_key = event['Records'][0]['s3']['object']['key']
+              attachment_bucket = os.environ['ATTACHMENT_BUCKET']
+
+              try:
+                  response = s3_client.get_object(Bucket=bucket_name, Key=object_key)
+                  raw_email = response['Body'].read()
+              except Exception as e:
+                  print(f"Error getting object {object_key} from bucket {bucket_name}. Error: {str(e)}")
+                  return
+
+              msg = BytesParser(policy=policy.default).parsebytes(raw_email)
+
+              for part in msg.iter_attachments():
+                  attachment_filename = part.get_filename()
+                  if attachment_filename:
+                      try:
+                          s3_client.put_object(
+                              Bucket=attachment_bucket,
+                              Key=f"{attachment_filename}",
+                              Body=part.get_payload(decode=True),
+                              ContentType=part.get_content_type()
+                          )
+                          print(f"Uploaded attachment: {attachment_filename}")
+                      except Exception as e:
+                          print(f"Error uploading attachment {attachment_filename}. Error: {str(e)}")
+
+              return {
+                  'statusCode': 200,
+                  'body': json.dumps('Attachment extraction completed.')
+              }
+      Runtime: python3.11
+      Timeout: 300
+      Environment:
+        Variables:
+          ATTACHMENT_BUCKET: !Select [5, !Split [':', !Ref AttachmentBucketARN]]
+
+  LambdaExecutionRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service: lambda.amazonaws.com
+            Action: sts:AssumeRole
+      Policies:
+        - PolicyName: LambdaS3Policy
+          PolicyDocument: 
+            Version: '2012-10-17'
+            Statement:
+              - Effect: Allow
+                Action:
+                  - s3:GetObject
+                  - s3:PutObject
+                Resource:
+                  - "*"
+
+  RawEmailBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: !Sub "raw-email-bucket-${AWS::AccountId}-${AWS::Region}"
+      AccessControl: Private
+      NotificationConfiguration:
+        LambdaConfigurations:
+          - Event: s3:ObjectCreated:Put
+            Function: !GetAtt EmailProcessingFunction.Arn
+          - Event: s3:ObjectCreated:Post
+            Function: !GetAtt EmailProcessingFunction.Arn
+    DependsOn:
+      - EmailProcessingFunction
+      - ExtractAttachmentLambdaInvokePermission
+
+  ExtractAttachmentLambdaInvokePermission:
+    Type: AWS::Lambda::Permission
+    Properties:
+      Action: lambda:InvokeFunction
+      FunctionName: !GetAtt EmailProcessingFunction.Arn
+      Principal: s3.amazonaws.com
+      SourceAccount: !Ref "AWS::AccountId"
+      SourceArn: !Sub "arn:aws:s3:::raw-email-bucket-${AWS::AccountId}-${AWS::Region}"
+  
+  RawEmailBucketPolicy:
+    Type: AWS::S3::BucketPolicy
+    Properties:
+      Bucket: !Ref RawEmailBucket
+      PolicyDocument: 
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service: ses.amazonaws.com
+            Action: s3:PutObject
+            Resource: !Sub "arn:aws:s3:::${RawEmailBucket}/*"
+            Condition:
+              StringEquals:
+                AWS:SourceAccount: !Sub "${AWS::AccountId}"
+              StringLike:
+                AWS:SourceArn: arn:aws:ses:*
+                
+  SESReceiptRuleSet:
+    Type: AWS::SES::ReceiptRuleSet
+    Properties:
+      RuleSetName: !Sub "email-rule-set-${AWS::AccountId}-${AWS::Region}"
+
+  SESReceiptRule:
+    Type: AWS::SES::ReceiptRule
+    Properties:
+      Rule:
+        Actions:
+          - S3Action:
+              BucketName: !Ref RawEmailBucket
+        Enabled: true
+        Recipients:
+          - !Ref EmailRecipient
+        ScanEnabled: false
+        TlsPolicy: Optional
+      RuleSetName: !Sub "email-rule-set-${AWS::AccountId}-${AWS::Region}"
+    DependsOn: 
+      - RawEmailBucketPolicy
+
+
+Outputs:
+  RawEmailBucket:
+    Value: !Ref RawEmailBucket
+    Description: Raw email S3 bucket 

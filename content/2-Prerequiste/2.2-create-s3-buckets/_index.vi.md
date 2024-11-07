@@ -9,7 +9,7 @@ pre : " <b> 2.2 </b> "
 ### Tổng quan
 
 Dựa theo sơ đồ kiến trúc của bài lab, chúng ta cần có 4 S3 Bucket:
-   - Raw Email Bucket
+   - Raw Email Bucket (Bucket này sẽ được tạo bằng CloudFormation)
    - Staging Bucket
    - Production Bucket
    - Quarantine bucket
@@ -31,7 +31,7 @@ Dựa theo sơ đồ kiến trúc của bài lab, chúng ta cần có 4 S3 Bucke
 4. Cần chắc chắn rằng tất cả các Bucket đã được tạo
 
 {{% notice info %}}
-Tiến hành thao tác trên để tạo đủ 4 S3 bucket phục vụ cho bài lab.
+Tiến hành thao tác trên để tạo đủ 3 S3 bucket phục vụ cho bài lab.
 {{% /notice %}}
 
-![S3 buckets](/images/2.prerequisite/011-s3-buckets.png)
+![S3 buckets](/images/2.prerequisite/014-create-bucket.png)

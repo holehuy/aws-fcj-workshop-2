@@ -20,7 +20,11 @@ pre : " <b> 2.1 </b> "
 
 ![Identity](/images/2.prerequisite/012-create-identity-ses.png)
 
-4. Tham khảo thêm tài liệu [này](https://docs.aws.amazon.com/ses/latest/dg/creating-identities.html#just-verify-domain-proc) nếu bạn đang quản lý domain ở DNS khác mà không phải là **Route53**.
+4. Lưu ý, để nhận được email, DNS cần phải cấu hình record MX cho domain đó. Tham khảo thêm tài liệu [này](https://docs.aws.amazon.com/ses/latest/dg/creating-identities.html#just-verify-domain-proc) nếu bạn đang quản lý domain ở DNS khác mà không phải là **Route53**.
 Nếu domain được quản lý ở Route53, quá trình xác thực sẽ diễn ra trong giây lát
 
 ![Verified Identity](/images/2.prerequisite/013-verified-identity.png)
+
+5. Cấu hình DNS MX record để SES có thể nhận được email của bạn. Tuỳ theo region mà bạn đang cấu hình SES mà value inbound sẽ khác nhau. Tham khảo [tài liệu](https://docs.aws.amazon.com/general/latest/gr/ses.html#ses_inbound_endpoints) để lấy được value tương ứng với region của bạn. Ở đây mình chọn `ap-southest-1`
+
+![Add MX Record](/images/4.email-receiving-solution/002-mx-record.png)
