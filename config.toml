@@ -16,6 +16,7 @@ home = [ "HTML", "RSS", "JSON"]
   disableBreadcrumb = false
   disableNextPrev = false
   disableLandingPageButton = true
+  image = "/aws-fcj-workshop-2/images/diagram.png"
 
 [Languages]
 [Languages.en]
