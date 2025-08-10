@@ -3,7 +3,7 @@
 This repository contains a **Hugo theme** based on the great **Grav Learn Theme**, customized for **AWS First Cloud Journey (FCJ)** student projects.  
 It can be used as a **starting template** for your static site.
 
-> **Note**: This README follows the documentation style from [https://learn.netlify.app/en/](https://learn.netlify.app/en/)
+> **Note**: The content of workshop follows the documentation style from [https://learn.netlify.app/en/](https://learn.netlify.app/en/)
 
 ---
 
