@@ -56,3 +56,5 @@ For more details on Hugo and theme customization:
 Mình cũng là một người trẻ, đã và đang và sẽ luôn tham gia First Cloud Journey như ngày đầu mình tham gia, luôn muốn học hỏi những kiến thức mới, và chia sẻ. Từ chương trình này, mình học hỏi nhiều hơn, kết nối nhiều hơn. Và công việc cũng có những điều tiến triển hơn. 
 Mình biết ngoài kia đang rất khó khăn, thị trường việc làm rất cạnh tranh. Có những lúc các bạn sẽ nản lòng, nhưng hãy cố gắng và đừng bỏ cuộc nhé những chiến binh của FCJ. Mình tin là mọi người đều làm được, và đều là những chiến binh thực thụ.
 Anh Hưng, anh Hiệp, Hoàng Kha, ... và những anh chị em, bạn bè FCJ sẽ luôn bên cạnh và hỗ trợ mọi người trong khả năng cho phép.
+
+CỐ LÊN NHA <3
